@@ -2,9 +2,9 @@
 # AWS Terraform Configuration: S3 + Lambda for Pre-Signed URLs
 # ---------------------------------------------------------------
 
-# Create an S3 bucket where PDFs will be uploaded
-resource "aws_s3_bucket" "pdf_bucket" {
-  bucket = "machine-uploaded-pdfs"  # Unique S3 bucket name
+# Create an S3 bucket where csvs will be uploaded
+resource "aws_s3_bucket" "csv_bucket" {
+  bucket = "machine-uploaded-csvs"  # Unique S3 bucket name
   force_destroy = true  # Destroys the bucket when running terraform destroy
 }
 
@@ -38,7 +38,7 @@ resource "aws_iam_policy" "lambda_policy" {
       {
         Action   = "s3:PutObject"  # Allows Lambda to generate pre-signed URLs for uploads
         Effect   = "Allow"
-        Resource = "${aws_s3_bucket.pdf_bucket.arn}/*"  # Grants access to all objects in the bucket
+        Resource = "${aws_s3_bucket.csv_bucket.arn}/*"  # Grants access to all objects in the bucket
       }
     ]
   })
@@ -80,7 +80,7 @@ resource "aws_lambda_function" "generate_presigned_url" {
   # Environment variable to pass the S3 bucket name to Lambda
   environment {
     variables = {
-      BUCKET_NAME = aws_s3_bucket.pdf_bucket.bucket
+      BUCKET_NAME = aws_s3_bucket.csv_bucket.bucket
     }
   }
 }
