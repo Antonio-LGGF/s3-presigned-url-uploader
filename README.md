@@ -38,14 +38,14 @@ terraform apply -auto-approve
 ### **3️⃣ Get a Pre-Signed URL**
 Run this command to request a pre-signed URL for uploading a file:
 ```powershell
-$response = curl "https://your-api-gateway-url/get-presigned-url?file_name=myfile.pdf"
+$response = curl "https://your-api-gateway-url/get-presigned-url?file_name=myfile.csv"
 $url = ($response.Content | ConvertFrom-Json).url
 Write-Output $url
 ```
 
 ### **4️⃣ Upload a File Using the Pre-Signed URL**
 ```powershell
-Invoke-WebRequest -Uri $url -Method Put -InFile "C:\path\to\myfile.pdf" -ContentType "application/octet-stream"
+Invoke-WebRequest -Uri $url -Method Put -InFile "C:\path\to\myfile.csv" -ContentType "application/octet-stream"
 ```
 
 ## 🔥 Verify the Upload
