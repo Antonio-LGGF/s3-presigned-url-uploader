@@ -53,6 +53,3 @@ Check if the file is in S3:
 ```sh
 aws s3 ls s3://your-bucket-name/
 ```
-
-## 📜 License
-This project is **MIT licensed**. Feel free to use and improve it!
