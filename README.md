@@ -30,6 +30,9 @@ cd s3-presigned-url-uploader
 ```
 
 ### **2️⃣ Deploy the Infrastructure (Terraform)**
+This sets up the AWS resources, including API Gateway and Lambda.
+Once deployed, you’ll see the API Gateway URL in the terminal output.
+You’ll use it to request pre-signed S3 upload URLs.
 ```sh
 terraform init
 terraform apply -auto-approve
